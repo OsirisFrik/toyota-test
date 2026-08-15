@@ -26,6 +26,8 @@ export class CrmRepository {
   createDeal(input: Omit<Deal, "id">): Deal {
     const deal: Deal = { id: randomUUID(), ...input };
     this.deals.push(deal);
+
+    console.log(deal);
     return deal;
   }
 
