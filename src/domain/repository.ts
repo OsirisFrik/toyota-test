@@ -24,10 +24,15 @@ export class CrmRepository {
   // lo que debes corregir aplicando TDD: primero la prueba en rojo,
   // después el código mínimo que la pone en verde.
   createDeal(input: Omit<Deal, "id">): Deal {
+    const leadExists = this.leads.find((item) => item.id === input.leadId);
+
+    if (!leadExists) {
+      throw new Error("Lead no existe");
+    }
+
     const deal: Deal = { id: randomUUID(), ...input };
     this.deals.push(deal);
 
-    console.log(deal);
     return deal;
   }
 
